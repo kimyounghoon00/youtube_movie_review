@@ -5,6 +5,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from pymongo import MongoClient           # pymongo를 임포트 하기(패키지 인스톨 먼저 해야겠죠?)
+client = MongoClient('localhost', 27017)  # mongoDB는 27017 포트로 돌아갑니다.
+db = client.dbmovie_review_test
+
 
 def get_image_title(url):
 
@@ -19,6 +23,7 @@ def get_image_title(url):
     play_time_list=list() # 썸네일 재생시간을 저장하는 리스트 가장 중요!!!
     views_list=list() # 조회수
     video_list = list() # 비디오 url 저장용 라스트
+
 
 
     idx = 1
@@ -62,7 +67,7 @@ def get_image_title(url):
 
             #재생시간 리스트에 저당
             play_time = driver.find_element_by_xpath(play_time_xpath)
-            play_time_list.append(play_time.text)
+            play_time_list.append(play_time.text[0:2].strip())
 
             #조회수 리스트에 저장
             view_time = driver.find_element_by_xpath(views_xpath)
@@ -74,21 +79,31 @@ def get_image_title(url):
             video_url = video.get_attribute('href')
             video_list.append(video_url)
 
-            print(idx, title.text, img_url, play_time.text, view_time.text, video_url)
+            print(idx, title.text, img_url, play_time.text[0:2].strip(), view_time.text, video_url)
+
 
             idx += 1
+
         except Exception as e:
             print()
             print(e)
             break
     assert len(image_list) == len(title_list)
     driver.close()
+    doc = {'image_list': image_list, 'title_list': title_list, 'play_time_list': play_time_list,
+           'views_list': views_list, 'viseo_list': video_list}
+    db.movies_review2.insert_one(doc)
+
     return image_list, title_list, play_time_list, views_list, video_list
+
+
+
 
 
 # 진솔한 리뷰
 url1 = 'https://www.youtube.com/channel/UC3DNe5b3NYZ5ojre8YE1_xw/videos'
 image1, title1, play_time1, view_time1, video1 = get_image_title(url1)
+
 
 
 
