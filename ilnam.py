@@ -59,25 +59,33 @@ def get_image_title(url):
             # 썸네일 주소를 리스트에 저장
             image = driver.find_element_by_xpath(img_xpath)
             img_url = image.get_attribute('src')
+
             image_list.append(img_url)
 
             # 타이틀을 리스트에 저장
             title = driver.find_element_by_xpath(title_xpath)
+
             title_list.append(title.text)
 
             #재생시간 리스트에 저당
             play_time = driver.find_element_by_xpath(play_time_xpath)
+
             play_time_list.append(play_time.text[0:2].strip())
 
             #조회수 리스트에 저장
             view_time = driver.find_element_by_xpath(views_xpath)
+
             views_list.append(view_time.text)
 
 
             #동영상 링크 리스트에 저장
             video = driver.find_element_by_xpath(video_link_xpath)
             video_url = video.get_attribute('href')
+
             video_list.append(video_url)
+
+            doc={'image_list1': img_url, 'title_list1': title.text, 'play_list1': play_time.text[0:2].strip(),'view_list1': view_time.text,'video_list1': video_url }
+            db.movies_review4.insert_one(doc)
 
             print(idx, title.text, img_url, play_time.text[0:2].strip(), view_time.text, video_url)
 
@@ -90,12 +98,10 @@ def get_image_title(url):
             break
     assert len(image_list) == len(title_list)
     driver.close()
-    doc = {'image_list': image_list, 'title_list': title_list, 'play_time_list': play_time_list,
-           'views_list': views_list, 'viseo_list': video_list}
-    db.movies_review2.insert_one(doc)
+
+
 
     return image_list, title_list, play_time_list, views_list, video_list
-
 
 
 
@@ -103,6 +109,7 @@ def get_image_title(url):
 # 진솔한 리뷰
 url1 = 'https://www.youtube.com/channel/UC3DNe5b3NYZ5ojre8YE1_xw/videos'
 image1, title1, play_time1, view_time1, video1 = get_image_title(url1)
+
 
 
 
