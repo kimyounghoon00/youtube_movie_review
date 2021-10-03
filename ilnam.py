@@ -110,6 +110,43 @@ def get_image_title(url):
 url1 = 'https://www.youtube.com/channel/UC3DNe5b3NYZ5ojre8YE1_xw/videos'
 image1, title1, play_time1, view_time1, video1 = get_image_title(url1)
 
+# 홍시네마
+url2 = 'https://www.youtube.com/channel/UCtwxuughKbSAV0e4bnz4ORg/videos'
+image2, title2, play_time2, view_time2, video2 = get_image_title(url2)
+
+# 무비우스
+url3 = 'https://www.youtube.com/channel/UCHPuCs7c4jJmDJHdOn3mIDA/videos'
+image3, title3, play_time3, view_time3, video3 = get_image_title(url3)
+
+# 어쩌다 영화한편
+url4 = 'https://www.youtube.com/channel/UC4a9C90kI9QzTVx9HRdlsjw/videos'
+image4, title4, play_time4, view_time4, video4 = get_image_title(url4)
+
+# 조조할인
+url5 = 'https://www.youtube.com/channel/UCfsdRdf5YvHDb3bWxkF_0_g/videos'
+image5, title5, play_time5, view_time5, video5 = get_image_title(url5)
+
+# 영화소녀
+url6 = 'https://www.youtube.com/channel/UCotjQBM9iMsYS0sY-FB0kNw/videos'
+image6, title6, play_time6, view_time6, video6 = get_image_title(url6)
+
+# 리뷰 MASTER
+url7 = 'https://www.youtube.com/channel/UCul4FTKARC-EaBq0e8UH7RA/videos'
+image7, title7, play_time7, view_time7, video7 = get_image_title(url7)
+
+# 뿔라 PULA
+url8 = 'https://www.youtube.com/channel/UCOVjr02SIkhawHoJzT3WuhQ/videos'
+image8, title8, play_time8, view_time8, video8 = get_image_title(url8)
+
+# 동네비디오방
+url9 = 'https://www.youtube.com/channel/UCXvftM-43hGjGc1TA-8Y_IA/videos'
+image9, title9, play_time9, view_time9, video9 = get_image_title(url9)
+
+# 시네마로드
+url10 = 'https://www.youtube.com/channel/UCe9xx5O_rt4MxQuv4ciPX5g/videos'
+image10, title10, play_time10, view_time10, video10 = get_image_title(url10)
+
+
 
 
 
