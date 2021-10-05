@@ -70,7 +70,7 @@ def get_image_title(url):
             #재생시간 리스트에 저당
             play_time = driver.find_element_by_xpath(play_time_xpath)
 
-            play_time_list.append(play_time.text[0:2].strip())
+            play_time_list.append(play_time.text[0:2].strip().rstrip(':'))
 
             #조회수 리스트에 저장
             view_time = driver.find_element_by_xpath(views_xpath)
@@ -84,10 +84,11 @@ def get_image_title(url):
 
             video_list.append(video_url)
 
-            doc={'image_list1': img_url, 'title_list1': title.text, 'play_list1': play_time.text[0:2].strip(),'view_list1': view_time.text,'video_list1': video_url }
-            db.movies_review4.insert_one(doc)
+            # DB에 저장
+            doc={'image_list1': img_url, 'title_list1': title.text, 'play_list1': int(play_time.text[0:2].strip().rstrip(':')), 'view_list1': view_time.text,'video_list1': video_url }
+            db.movies_review5.insert_one(doc)
 
-            print(idx, title.text, img_url, play_time.text[0:2].strip(), view_time.text, video_url)
+            print(idx, title.text, img_url, play_time.text[0:2].strip().rstrip(':'), view_time.text, video_url)
 
 
             idx += 1
